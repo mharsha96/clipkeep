@@ -2,12 +2,19 @@
   "name": "clipkeep",
   "private": true,
   "version": "0.1.0",
+  "description": "An intentional encrypted clip inbox for moving useful text between iPhone and Mac.",
+  "author": "mharsha96",
+  "license": "MIT",
   "type": "module",
+  "main": "electron/main.mjs",
   "scripts": {
     "build": "vite build",
     "start": "npm run build && node server.mjs",
     "serve": "node server.mjs",
     "dev": "vite --host 0.0.0.0",
+    "electron:dev": "npm run build && electron .",
+    "electron:build": "npm run build && electron-builder --mac --dir",
+    "electron:dist": "npm run build && electron-builder --mac",
     "test": "npm run build && node --test --test-concurrency=1 tests/clip.test.mjs tests/server.test.mjs tests/ui.test.mjs"
   },
   "dependencies": {
@@ -19,9 +26,31 @@
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^4.5.0",
+    "electron": "^42.2.0",
+    "electron-builder": "^26.8.1",
     "playwright": "^1.60.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "vite": "^6.3.5"
+  },
+  "build": {
+    "appId": "com.mharsha96.clipkeep",
+    "productName": "ClipKeep",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "dist/**",
+      "electron/**",
+      "server.mjs",
+      "package.json"
+    ],
+    "mac": {
+      "category": "public.app-category.productivity",
+      "target": [
+        "dmg",
+        "zip"
+      ]
+    }
   }
 }

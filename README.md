@@ -20,6 +20,26 @@ npm start
 Open the Mac URL printed in the terminal, then scan the QR code in that view
 with the iPhone while both devices are on the same Wi-Fi network.
 
+## Run The Menu Bar App
+
+```bash
+npm install
+npm run electron:dev
+```
+
+ClipKeep appears as `CK` in the macOS menu bar. Click it to open the compact
+Mac inbox popover. The app starts the local relay automatically and shows the
+same QR pairing flow as the browser prototype.
+
+## Build The macOS App
+
+```bash
+npm run electron:build
+```
+
+This creates an unsigned local app bundle under `release/`. Public downloads
+should be Developer ID signed and notarized before release.
+
 ## What's Included
 
 - Mac inbox view with QR pairing, search, filters, copy, open-link, keep, and delete
@@ -60,3 +80,7 @@ an operation, and clearing synchronizes across clients.
 
 See [PRODUCTION.md](./PRODUCTION.md) for the native production architecture and
 release gates.
+
+## License
+
+MIT
